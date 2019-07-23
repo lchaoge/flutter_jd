@@ -7,6 +7,7 @@ import 'dart:convert';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_jd/common/provide/child_category_provide.dart';
 import 'package:provide/provide.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 /**
  * 商品列表
  * 上啦加载
@@ -51,7 +52,14 @@ class _CategoryGoodsListState extends State<CategoryGoodsList> {
                   ),
                   loadMore: () async {
                     print('加载更多');
-                    
+                    Fluttertoast.showToast(
+                      msg: "没有更多数据",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.CENTER,
+                      backgroundColor: Colors.pink,
+                      textColor: Colors.white,
+                      fontSize: 16.0,
+                    );
                   },
                   child: ListView.builder(
                     itemCount: data.goodsList.length,
@@ -76,6 +84,14 @@ class _CategoryGoodsListState extends State<CategoryGoodsList> {
     return InkWell(
       onTap: () {
         print(index);
+        Fluttertoast.showToast(
+          msg: "没有更多数据",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          backgroundColor: Colors.pink,
+          textColor: Colors.white,
+          fontSize: 16.0,
+        );
       },
       child: Container(
         padding: EdgeInsets.only(top: 5.0, bottom: 5.0),

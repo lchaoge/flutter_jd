@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_jd/routes/router_static.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -18,7 +19,12 @@ class SwiperWidget extends StatelessWidget {
       width: ScreenUtil().setWidth(750),
       child: Swiper(
         itemBuilder: (BuildContext context,int index){
-          return Image.network(swiperDataList[index],fit: BoxFit.cover,);
+          return InkWell(
+            onTap: (){
+              RouterStatic.router.navigateTo(context, '/detail?id="23213"');
+            },
+            child: Image.network(swiperDataList[index],fit: BoxFit.cover,),
+          );
         },
         itemCount: swiperDataList.length,
         pagination: SwiperPagination(),

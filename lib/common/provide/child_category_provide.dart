@@ -17,7 +17,7 @@ class ChildCategoryProvide with ChangeNotifier {
     childIndex = 0;
     categoryId = id;
     BxMallSubDto all = BxMallSubDto(
-      mallSubId: '00',
+      mallSubId: '',
       mallCategoryId: '00',
       mallSubName: '全部',
       comments: 'null'

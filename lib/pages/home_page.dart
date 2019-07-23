@@ -9,6 +9,7 @@ import 'package:flutter_jd/common/widget/leader_phone.dart';
 import 'package:flutter_jd/common/widget/recommend.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_easyrefresh/bezier_circle_header.dart';
+import 'package:flutter_jd/routes/router_static.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -137,7 +138,10 @@ class _HomePageState extends State<HomePage>
     if (hotGoodsList.length != 0) {
       List<Widget> listWidget = hotGoodsList.map((item) {
         return InkWell(
-          onTap: () {},
+          onTap: () {
+            print(item);
+            RouterStatic.router.navigateTo(context, '/detail?id=${item["mallPrice"]}');
+          },
           child: Container(
             width: ScreenUtil().setWidth(372),
             color: Colors.white,

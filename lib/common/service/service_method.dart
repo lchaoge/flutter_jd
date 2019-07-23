@@ -33,10 +33,10 @@ Future getHomePageContent() async {
     print('开始获取首页数据...............');
     Response response;
     Dio dio = new Dio();
-    dio.options.contentType = ContentType.parse("application/json");
-    dio.options.headers = httpHeaders;
-    var params = {"lon": "39.9316564326", "lat": "116.2767219543"};
-    print(servicePath['homePageContent']);
+    // dio.options.contentType = ContentType.parse("application/json");
+    // dio.options.headers = httpHeaders;
+    // var params = {"lon": "39.9316564326", "lat": "116.2767219543"};
+    // print(servicePath['homePageContent']);
     response = await dio.get('https://resources.ninghao.net/demo/posts.json');
     print(response.statusCode);
     if (response.statusCode == 200) {
@@ -69,3 +69,4 @@ Future getHomePageBeloConten(Map page) async {
     return print('ERROR:======>${e}');
   }
 }
+

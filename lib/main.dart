@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_jd/common/provide/child_category_provide.dart';
+import 'package:flutter_jd/provide/child_category_provide.dart';
 import 'package:flutter_jd/pages/index_page.dart';
 import 'package:provide/provide.dart';
-import 'package:flutter_jd/common/provide/counter.dart';
-import 'package:flutter_jd/common/provide/category_goods_list_provide.dart';
-import 'package:flutter_jd/common/provide/details_provide.dart';
+import 'package:flutter_jd/provide/counter.dart';
+import 'package:flutter_jd/provide/category_goods_list_provide.dart';
+import 'package:flutter_jd/provide/details_provide.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter_jd/routes/routes.dart';
 import 'package:flutter_jd/routes/router_static.dart';
@@ -33,6 +33,7 @@ class MyApp extends StatelessWidget {
         onGenerateRoute: RouterStatic.router.generator,
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+          platform: TargetPlatform.iOS, // 滑动返回
           primaryColor: Color.fromRGBO(228, 49, 48, 1.0),
         ),
         home: IndexPage(),

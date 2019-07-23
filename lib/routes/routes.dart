@@ -5,17 +5,13 @@ import 'package:flutter_jd/routes/router_handler.dart';
 class Routes {
   static String root = '/';
   static String detailsPage = '/detail';
-  
 
-  static void configureRoutes(Router router){
+  static void configureRoutes(Router router) {
     router.notFoundHandler = new Handler(
-      handlerFunc: (BuildContext context,Map<String,List<String>> params){
-        print('页面没有找到');
-      }
-    );
+        handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+      print('页面没有找到');
+    });
 
-    router.define(detailsPage,handler: detailsPageHandler);
-
+    router.define(detailsPage, handler: detailsPageHandler);
   }
-
 }

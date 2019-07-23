@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:flutter_jd/common/model/category_model.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provide/provide.dart';
-import 'package:flutter_jd/common/provide/child_category_provide.dart';
-import 'package:flutter_jd/common/provide/category_goods_list_provide.dart';
+import 'package:flutter_jd/provide/child_category_provide.dart';
+import 'package:flutter_jd/provide/category_goods_list_provide.dart';
 import 'package:flutter_jd/common/service/service_method.dart';
 import 'package:flutter_jd/common/model/category_goods_list_model.dart';
 

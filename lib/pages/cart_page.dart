@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_jd/common/provide/counter.dart';
+import 'package:flutter_jd/provide/counter.dart';
 import 'package:provide/provide.dart';
 
 class CartPage extends StatelessWidget {

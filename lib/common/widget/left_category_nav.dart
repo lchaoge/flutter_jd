@@ -53,7 +53,7 @@ class _LeftCategoryNavState extends State<LeftCategoryNav> {
           listIndex = index; 
         });
         var childList = list[index].bxMallSubDto;
-        Provide.value<ChildCategoryProvide>(context).getChildCategory(childList);
+        Provide.value<ChildCategoryProvide>(context).getChildCategory(childList,list[index].mallCategoryId);
         var categoryId = list[index].mallCategoryId;
         _getGoodsList(categoryId:categoryId);
       },
@@ -91,7 +91,7 @@ class _LeftCategoryNavState extends State<LeftCategoryNav> {
     setState(() {
       list = category.data;
     });
-    Provide.value<ChildCategoryProvide>(context).getChildCategory(list[0].bxMallSubDto);
+    Provide.value<ChildCategoryProvide>(context).getChildCategory(list[0].bxMallSubDto,list[0].mallCategoryId);
     // });
   }
 

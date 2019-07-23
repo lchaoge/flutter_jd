@@ -4,6 +4,7 @@ import 'package:flutter_jd/common/widget/right_catepory_nav.dart';
 import 'package:flutter_jd/common/widget/category_goods_list.dart';
 import 'package:flutter_jd/common/model/category_goods_list_model.dart';
 
+
 class CategoryPage extends StatefulWidget {
   @override
   _CategoryPageState createState() => _CategoryPageState();

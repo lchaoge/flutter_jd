@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_jd/common/model/details_model.dart';
 import 'package:flutter_jd/provide/details_provide.dart';
 import 'package:provide/provide.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 
 class DetailsTopAreaWidget extends StatelessWidget {
   @override
@@ -17,7 +19,7 @@ class DetailsTopAreaWidget extends StatelessWidget {
             color: Colors.white,
             child: Column(
               children: <Widget>[
-                _goodsImage(goodsInfo.image1),
+                _goodsImage(goodsInfo),
                 _goodsName(goodsInfo.goodsName),
                 _goodsNum(goodsInfo.goodsSerialNumber),
                 _goodsPrice(goodsInfo.oriPrice,goodsInfo.presentPrice),
@@ -32,11 +34,39 @@ class DetailsTopAreaWidget extends StatelessWidget {
   }
 
   // 设置商品图片
-  Widget _goodsImage(String url) {
-    return Image.network(
-      url,
-      fit: BoxFit.cover,
-      width: ScreenUtil().setWidth(740),
+  Widget _goodsImage(GoodInfo goodsInfo) {
+    List<String> images = [];
+    if(goodsInfo.image1.isNotEmpty){
+      images.add(goodsInfo.image1);
+    }
+    if(goodsInfo.image2.isNotEmpty){
+      images.add(goodsInfo.image2);
+    }
+    if(goodsInfo.image3.isNotEmpty){
+      images.add(goodsInfo.image3);
+    }
+    if(goodsInfo.image4.isNotEmpty){
+      images.add(goodsInfo.image4);
+    }
+    if(goodsInfo.image5.isNotEmpty){
+      images.add(goodsInfo.image5);
+    }
+    
+    return Container(
+      height: ScreenUtil().setHeight(750),
+      width: ScreenUtil().setWidth(750),
+      child: Swiper(
+        itemBuilder: (BuildContext context,int index){
+          return InkWell(
+            onTap: (){
+            },
+            child:  Image.network(images[index],fit: BoxFit.cover,),
+          );
+        },
+        itemCount: images.length,
+        pagination: SwiperPagination(),
+        autoplay: images.length>1?true:false,
+      ),
     );
   }
 

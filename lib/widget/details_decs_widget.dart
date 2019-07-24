@@ -18,7 +18,7 @@ class DetailsDecsWidget extends StatelessWidget {
             padding: EdgeInsets.all(10.0),
             child: Column(
               children: <Widget>[
-                // _goodsDetail(context),
+                ..._goodsDetail(context),
                 Html(
                   data: "<img src='http://images.baixingliangfan.cn/shopGoodsDetailImg/20171224/20171224081110_1074.jpg' /><img src='http://images.baixingliangfan.cn/shopGoodsDetailImg/20171224/20171224081110_1074.jpg' />",
                 )
@@ -37,13 +37,15 @@ class DetailsDecsWidget extends StatelessWidget {
     );
   }
 
-  Widget _goodsDetail(BuildContext context){
+  List<Widget> _goodsDetail(BuildContext context){
     List<String> goodsDetails = Provide.value<DetailsProvide>(context).goodsInfo.data.goodInfo.goodsDetail;
+    List<Widget> result = [];
     goodsDetails.map((item){
-      return Container(
+      result.add(Container(
         padding: EdgeInsets.all(5.0),
         child: Image.network(item,fit: BoxFit.cover,),
-      );
+      ));
     }).toList();
+    return result;
   }
 }

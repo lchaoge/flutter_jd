@@ -42,13 +42,13 @@ class _CategoryGoodsListState extends State<CategoryGoodsList> {
                     textColor: Colors.grey,
                     moreInfoColor: Colors.grey,
                     showMore: true,
-                    noMoreText: Provide.value<ChildCategoryProvide>(context).noMoreText,
+                    noMoreText:
+                        Provide.value<ChildCategoryProvide>(context).noMoreText,
                     moreInfo: '',
                     loadReadyText: '释放加载...',
                     loadingText: '加载中...',
                     loadedText: '上拉加载...',
                     loadText: '上拉加载...',
-                    
                   ),
                   loadMore: () async {
                     print('加载更多');
@@ -120,9 +120,10 @@ class _CategoryGoodsListState extends State<CategoryGoodsList> {
   Widget _goodsImage(List goodsList, int index) {
     return Container(
       width: ScreenUtil().setWidth(200),
-      child: Image.network(
-        goodsList[index].image,
+      child: FadeInImage.assetNetwork(
+        image: goodsList[index].image,
         fit: BoxFit.cover,
+        placeholder: 'assets/images/jd_loading.png',
       ),
     );
   }

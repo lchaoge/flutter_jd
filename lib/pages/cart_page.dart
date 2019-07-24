@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_jd/provide/counter.dart';
+import 'package:flutter_jd/common/model/cart_model.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provide/provide.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_jd/provide/cart_provide.dart';
+import 'package:flutter_jd/widget/cart_item_widget.dart';
+import 'package:flutter_jd/widget/cart_bottom_widget.dart';
 
 class CartPage extends StatefulWidget {
   @override
@@ -14,7 +17,6 @@ class _CartPageState extends State<CartPage> {
 
   @override
   void initState() {
-    _show();
     super.initState();
   }
 
@@ -22,68 +24,45 @@ class _CartPageState extends State<CartPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('购物车'),),
-      body: Container(
-      child: Center(
-        child: Column(
-          children: <Widget>[
-            Container(
-              height: ScreenUtil().setHeight(750),
-              child: ListView.builder(
-                itemCount: textList.length,
-                itemBuilder: (BuildContext context,int index){
-                  return ListTile(
-                    title: Text(textList[index]),
-                  );
-                },
-              ),
-            ),
-            
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+      body: FutureBuilder(
+        future:_getCartInfo(context),
+        builder: (context,shapshot){
+          // if(shapshot.hasData){
+            var cartList = Provide.value<CartProvide>(context).cartModelList;
+            return Stack(
               children: <Widget>[
-                RaisedButton(
-                  onPressed: (){_add();},
-                  child: Text('增加'),
+                Provide<CartProvide>(
+                  builder: (context,child,data){
+                    cartList = cartList = Provide.value<CartProvide>(context).cartModelList;
+                    return ListView.builder(
+                      itemCount: cartList.length,
+                      itemBuilder: (BuildContext context,int index){
+                        return CartItemWidget(cartList[index],index);
+                      },
+                    );
+                  },
                 ),
-                RaisedButton(
-                  onPressed: (){_clear();},
-                  child: Text('删除'),
-                ),
-                RaisedButton(
-                  onPressed: (){_show();},
-                  child: Text('查看'),
-                ),
+                Positioned(
+                  bottom: 0,
+                  right: 0,
+                  width: ScreenUtil().setWidth(750),
+                  child: CartBottomWidget(),
+                )
               ],
-            )
-          ],
-        ),
-      ),
-    ),
+            );
+          // }else{
+          //   return Text('正在加载数据...');
+          // }
+          
+        },
+      )
+      
     );
   }
 
-  // 增加方法
-  void _add() async{
-    SharedPreferences  prefs = await SharedPreferences.getInstance();
-    String temp = 'jd商城';
-    textList.add(temp);
-    prefs.setStringList('jd', textList);
-    _show();
+  Future<String> _getCartInfo(BuildContext context) async{
+    print('获取购物车数据');
+    await Provide.value<CartProvide>(context).getCartInfo();
   }
-  _show() async{
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    if(prefs.getStringList('jd')!=null){
-      setState(() {
-        textList = prefs.getStringList('jd');
-      });
-    }
-  }
-  _clear() async{
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    // prefs.clear();
-    prefs.remove('jd');
-    setState(() {
-      textList = [];
-    });
-  }
+  
 }

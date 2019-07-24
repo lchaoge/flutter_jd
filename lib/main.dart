@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_jd/provide/cart_provide.dart';
 import 'package:flutter_jd/provide/child_category_provide.dart';
 import 'package:flutter_jd/pages/index_page.dart';
+import 'package:flutter_jd/provide/current_index_provide.dart';
 import 'package:provide/provide.dart';
-import 'package:flutter_jd/provide/counter.dart';
 import 'package:flutter_jd/provide/category_goods_list_provide.dart';
 import 'package:flutter_jd/provide/details_provide.dart';
 import 'package:fluro/fluro.dart';
@@ -13,10 +14,11 @@ void main() {
   var providers = Providers();
 
   providers
-  ..provide(Provider<Counter>.value(Counter()))
+  ..provide(Provider<CurrentIndexProvide>.value(CurrentIndexProvide()))
   ..provide(Provider<ChildCategoryProvide>.value(ChildCategoryProvide()))
   ..provide(Provider<CategoryGoodsListProvide>.value(CategoryGoodsListProvide()))
-  ..provide(Provider<DetailsProvide>.value(DetailsProvide()));
+  ..provide(Provider<DetailsProvide>.value(DetailsProvide()))
+  ..provide(Provider<CartProvide>.value(CartProvide()));
   runApp(ProviderNode(child: MyApp(), providers: providers));
 }
 

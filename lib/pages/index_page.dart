@@ -6,14 +6,12 @@ import 'package:flutter_jd/pages/home_page.dart';
 import 'package:flutter_jd/pages/category_page.dart';
 import 'package:flutter_jd/pages/cart_page.dart';
 import 'package:flutter_jd/pages/member_page.dart';
+import 'package:provide/provide.dart';
+import 'package:flutter_jd/provide/current_index_provide.dart';
 
-class IndexPage extends StatefulWidget {
-  @override
-  _IndexPageState createState() => _IndexPageState();
-}
 
-class _IndexPageState extends State<IndexPage> {
-
+class IndexPage extends StatelessWidget {
+  
   final List<BottomNavigationBarItem> bottomTabs = [
     BottomNavigationBarItem(
       icon: Icon(CupertinoIcons.home),
@@ -40,15 +38,6 @@ class _IndexPageState extends State<IndexPage> {
     MemberPage()
   ];
 
-  int currentIndex = 0;
-  var currentPage;
-
-  @override
-  void initState() {
-    currentPage = tabBodies[currentIndex];
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     ScreenUtil.instance = ScreenUtil(width: 750,height: 1334)..init(context);
@@ -57,23 +46,25 @@ class _IndexPageState extends State<IndexPage> {
     print('设备的高:${ScreenUtil.screenHeight}');
     print('设备的宽:${ScreenUtil.screenWidth}');
 
-    return Scaffold(
-      backgroundColor: Color.fromRGBO(244, 245, 245, 1.0),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: currentIndex,
-        items: bottomTabs,
-        onTap:(int index){
-          setState(() {
-            currentIndex = index;
-            currentPage = tabBodies[currentIndex];
-          });
-        },
-      ),
-      body: IndexedStack(
-        index: currentIndex,
-        children: tabBodies,
-      ),
+    return Provide<CurrentIndexProvide>(
+      builder: (context,child,data){
+        int currentIndex = Provide.value<CurrentIndexProvide>(context).currentIndex;
+        return Scaffold(
+          backgroundColor: Color.fromRGBO(244, 245, 245, 1.0),
+          bottomNavigationBar: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            currentIndex: currentIndex,
+            items: bottomTabs,
+            onTap:(int index){
+              Provide.value<CurrentIndexProvide>(context).changeIndex(index);
+            },
+          ),
+          body: IndexedStack(
+            index: currentIndex,
+            children: tabBodies,
+          ),
+        );
+      },
     );
   }
 }

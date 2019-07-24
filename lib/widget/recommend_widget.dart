@@ -37,7 +37,11 @@ class Recommend extends StatelessWidget {
                     width: index == 0 ? 0 : 0.5, color: Colors.black12))),
         child: Column(
           children: <Widget>[
-            Image.network('${recommendList[index]['image']}',fit: BoxFit.cover,),
+            FadeInImage.assetNetwork(
+              image: '${recommendList[index]['image']}',
+              fit: BoxFit.cover,
+              placeholder: 'assets/images/jd_loading.png',
+            ),
             Text('￥${recommendList[index]['mallPrice']}'),
             Text(
               '￥${recommendList[index]['price']}',

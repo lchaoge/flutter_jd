@@ -60,7 +60,11 @@ class DetailsTopAreaWidget extends StatelessWidget {
           return InkWell(
             onTap: (){
             },
-            child:  Image.network(images[index],fit: BoxFit.cover,),
+            child: FadeInImage.assetNetwork(
+              image: images[index],
+              fit: BoxFit.cover,
+              placeholder: 'assets/images/jd_loading.png',
+            ),
           );
         },
         itemCount: images.length,

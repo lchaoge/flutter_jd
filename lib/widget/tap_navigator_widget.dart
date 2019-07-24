@@ -19,9 +19,11 @@ class TapNavigator extends StatelessWidget {
             padding: EdgeInsets.only(
               top: 5.0
             ),
-            child:Image.network(
-              item['image'],
+            child:FadeInImage.assetNetwork(
               width: ScreenUtil().setWidth(75),
+              image: item['image'],
+              fit: BoxFit.cover,
+              placeholder: 'assets/images/jd_loading.png',
             ),
           ),
           Container(

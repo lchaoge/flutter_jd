@@ -149,9 +149,11 @@ class _HomePageState extends State<HomePage>
             margin: EdgeInsets.only(bottom: 3.0),
             child: Column(
               children: <Widget>[
-                Image.network(
-                  item['image'],
+                FadeInImage.assetNetwork(
                   width: ScreenUtil().setWidth(370),
+                  image: item['image'],
+                  fit: BoxFit.cover,
+                  placeholder: 'assets/images/jd_loading.png',
                 ),
                 Text(
                   item['name'],

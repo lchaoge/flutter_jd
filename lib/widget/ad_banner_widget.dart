@@ -17,14 +17,12 @@ class AdBanner extends StatelessWidget {
         onTap: (){
           RouterStatic.router.navigateTo(context, '/detail?id="123"');
         },
-        child: Image.network(adPicture,fit: BoxFit.cover,),
+        child: FadeInImage.assetNetwork(
+          image: adPicture,
+          fit: BoxFit.cover,
+          placeholder: 'assets/images/jd_loading.png',
+        ),
       ),
-      // child: Image.network(adPicture,fit: BoxFit.cover,),
-      // child: FadeInImage.assetNetwork(
-      //   image: adPicture,
-      //   fit: BoxFit.cover,
-      //   placeholder: 'assets/images/jd_loading.png',
-      // ),
     );
   }
 }

@@ -23,7 +23,11 @@ class SwiperWidget extends StatelessWidget {
             onTap: (){
               RouterStatic.router.navigateTo(context, '/detail?id="23213"');
             },
-            child: Image.network(swiperDataList[index],fit: BoxFit.cover,),
+            child: FadeInImage.assetNetwork(
+              image: swiperDataList[index],
+              fit: BoxFit.cover,
+              placeholder: 'assets/images/jd_loading.png',
+            ),
           );
         },
         itemCount: swiperDataList.length,

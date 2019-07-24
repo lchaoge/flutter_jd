@@ -43,7 +43,11 @@ class DetailsDecsWidget extends StatelessWidget {
     goodsDetails.map((item){
       result.add(Container(
         padding: EdgeInsets.all(5.0),
-        child: Image.network(item,fit: BoxFit.cover,),
+        child: FadeInImage.assetNetwork(
+          image: item,
+          fit: BoxFit.cover,
+          placeholder: 'assets/images/jd_loading.png',
+        ),
       ));
     }).toList();
     return result;

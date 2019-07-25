@@ -33,6 +33,7 @@ dependencies:
   fluro: ^1.5.1
   flutter_html: ^0.10.4
   shared_preferences: ^0.5.1
+  jpush_flutter: ^0.0.12
 
 dev_dependencies:
   flutter_test:

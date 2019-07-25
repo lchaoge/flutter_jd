@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluro/fluro.dart';
-
+import 'package:flutter_jd/pages/jpush_page.dart';
 import 'package:flutter_jd/pages/details_page.dart';
 
 
@@ -9,5 +9,11 @@ Handler detailsPageHandler = Handler(
     String goodsId = params['id'].first;
     print('index>details goodsId is $goodsId');
     return DetailsPage(goodsId);
+  }
+);
+
+Handler jpushPageHandler = Handler(
+  handlerFunc: (BuildContext context,Map<String,List<String>> params){
+    return JPushPage();
   }
 );
